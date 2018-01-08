@@ -155,7 +155,7 @@ class FetchAttachmentsFlow(requests: Set<SecureHash>,
         override val id: SecureHash by lazy { attachmentData.sha256() }
 
         private class Token(private val id: SecureHash) : SerializationToken {
-            override fun fromToken(context: SerializeAsTokenContext) = FetchedAttachment(context.attachmentDataLoader(id))
+            override fun fromToken(context: SerializeAsTokenContext) = FetchedAttachment(context.attachments.attachmentDataLoader(id))
         }
 
         override fun toToken(context: SerializeAsTokenContext) = Token(id)

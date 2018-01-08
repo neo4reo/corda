@@ -166,7 +166,7 @@ class NodeAttachmentService(metrics: MetricRegistry) : AttachmentStorage, Single
         }
 
         private class Token(private val id: SecureHash, private val checkOnLoad: Boolean) : SerializationToken {
-            override fun fromToken(context: SerializeAsTokenContext) = AttachmentImpl(id, context.attachmentDataLoader(id), checkOnLoad)
+            override fun fromToken(context: SerializeAsTokenContext) = AttachmentImpl(id, context.attachments.attachmentDataLoader(id), checkOnLoad)
         }
 
         override fun toToken(context: SerializeAsTokenContext) = Token(id, checkOnLoad)
